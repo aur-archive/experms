@@ -1,0 +1,12 @@
+# arg 1:  the new package version
+# arg 2:  the old package version
+
+post_install() {
+  echo -e "Before using Experms, you need to edit the configuration-file '/etc/experms.conf'.\nSee 'man experms' and 'man experms.conf' for more information."
+}
+
+post_upgrade() {
+  if [[ $2 == 0.1-* ]] || [[ $2 == 0.2-* ]]; then
+    echo -e "WARNING: Experms is totally rewritten. Your configuration-file won't work with the new version.\nSee 'man experms' and 'man experms.conf' for more information."
+  fi
+}
